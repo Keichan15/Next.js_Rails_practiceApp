@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 interface BookInputs {
   title: string;
@@ -9,6 +10,8 @@ interface BookInputs {
 }
 
 export default function NewBookPage() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -17,8 +20,9 @@ export default function NewBookPage() {
 
   const createBook: SubmitHandler<BookInputs> = async (data) => {
     try {
-      await axios.post("/api/books", data);
+      await axios.post("http://localhost:3000/api/books", data);
       console.log("Book created successfully");
+      router.push("/books");
     } catch (error) {
       console.error("Failed to create book:", error);
     }
