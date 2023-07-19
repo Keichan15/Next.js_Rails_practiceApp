@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 // git GUI test
 
 import React from "react";
@@ -38,15 +39,18 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <div className="m-4">
-      <h1 className="text-4xl mb-4 underline">Book一覧</h1>
-      {books.map((book) => (
-        <React.Fragment key={book.id}>
-          <p className="mb-1">{book.title}</p>
-          <p>{book.body}</p>
-        </React.Fragment>
-      ))}
-    </div>
+    <>
+      <div className="m-4">
+        <h1 className="text-4xl mb-4 underline">Book一覧</h1>
+        {books.map((book) => (
+          <React.Fragment key={book.id}>
+            <Link href={`/books/${book.id}`}>{book.title}</Link>
+            <p>{book.body}</p>
+          </React.Fragment>
+        ))}
+      </div>
+      <p></p>
+    </>
   );
 };
 

@@ -13,6 +13,12 @@ class BooksController < ApplicationController
     end
   end
 
+
+  def show
+    @book = Book.find(params[:id])
+    render json: @book
+  end
+
   private
   def book_params
     params.require(:book).permit(:title, :body)
